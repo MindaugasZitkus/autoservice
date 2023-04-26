@@ -6,8 +6,14 @@ class VehicleModel(models.Model):
     make = models.CharField(verbose_name="Gamintojas", max_length=50)
     model = models.CharField(verbose_name="Modelis", max_length=50)
 
+
     def __str__(self):
         return f"{self.make} {self.model}"
+
+    class Meta:
+        verbose_name = "Automobilio modelis"
+        verbose_name_plural = "Automobilio modeliai"
+
 
 
 class Service(models.Model):
@@ -16,6 +22,10 @@ class Service(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "Paslauga"
+        verbose_name_plural = "Paslaugos"
 
 
 class Vehicle(models.Model):
@@ -28,6 +38,10 @@ class Vehicle(models.Model):
     def __str__(self):
         return f"{self.vehicle_model} ({self.plate})"
 
+    class Meta:
+        verbose_name = "Automobis"
+        verbose_name_plural = "Automobiliai"
+
 
 class Order(models.Model):
     date = models.DateTimeField(verbose_name="Data", auto_now_add=True)
@@ -35,6 +49,10 @@ class Order(models.Model):
 
     def __str__(self):
         return f"{self.vehicle} ({self.date})"
+
+    class Meta:
+        verbose_name = "Uzsakymas"
+        verbose_name_plural = "Uzsakymai"
 
 
 class Order_line(models.Model):
@@ -44,3 +62,7 @@ class Order_line(models.Model):
 
     def __str__(self):
         return f"{self.order.vehicle} ({self.order.date}) : {self.service} - {self.quantity} "
+
+    class Meta:
+        verbose_name = "Uzsakymo eilute "
+        verbose_name_plural = "Uzsakymo eilutes"
