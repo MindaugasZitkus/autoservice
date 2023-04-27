@@ -10,7 +10,7 @@ class VehicleModel(models.Model):
     def __str__(self):
         return f"{self.make} {self.model}"
 
-    class Meta:
+    class Meta:          #Modeliu pavadinimai yra atvaizduojami teisingai vienaskaita ir daugiskaita (Autoservice skiltyje ir iejus i vidu)
         verbose_name = "Automobilio modelis"
         verbose_name_plural = "Automobilio modeliai"
 
@@ -24,7 +24,7 @@ class Service(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "Paslauga"
+        verbose_name = "Paslauga"  #Modeliu pavadinimai yra atvaizduojami teisingai vienaskaita ir daugiskaita (Autoservice skiltyje ir iejus i vidu)
         verbose_name_plural = "Paslaugos"
 
 
@@ -38,8 +38,8 @@ class Vehicle(models.Model):
     def __str__(self):
         return f"{self.vehicle_model} ({self.plate})"
 
-    class Meta:
-        verbose_name = "Automobis"
+    class Meta:            #Modeliu pavadinimai yra atvaizduojami teisingai vienaskaita ir daugiskaita (Autoservice skiltyje ir iejus i vidu)
+        verbose_name = "Automobilis"
         verbose_name_plural = "Automobiliai"
 
 
@@ -50,7 +50,17 @@ class Order(models.Model):
     def __str__(self):
         return f"{self.vehicle} ({self.date})"
 
-    class Meta:
+    LOAN_STATUS = (           #migracijas reikia pasidaryti nes kitaip klaida mes
+        ('p', 'Patvirtinta'),
+        ('v', 'Vykdoma'),
+        ('a', 'Atsaukta'),
+        ('t', 'Tvirtinama'),
+        ('i', 'Ivykdita'),
+    )
+
+    status = models.CharField(verbose_name="Busena", max_length=1, choices=LOAN_STATUS, blank=True, default='t')
+
+    class Meta:         #Modeliu pavadinimai yra atvaizduojami teisingai vienaskaita ir daugiskaita (Autoservice skiltyje ir iejus i vidu)
         verbose_name = "Uzsakymas"
         verbose_name_plural = "Uzsakymai"
 
@@ -64,5 +74,5 @@ class Order_line(models.Model):
         return f"{self.order.vehicle} ({self.order.date}) : {self.service} - {self.quantity} "
 
     class Meta:
-        verbose_name = "Uzsakymo eilute "
+        verbose_name = "Uzsakymo eilute "   #Modeliu pavadinimai yra atvaizduojami teisingai vienaskaita ir daugiskaita (Autoservice skiltyje ir iejus i vidu)
         verbose_name_plural = "Uzsakymo eilutes"
