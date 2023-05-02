@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} Uzsakymai {% endblock %}
+
+{% block content %}
+<h1>Uzsakymai:</h1>
+<br>
+{% for order in orders %}
+    <p>{{ order }}</p>
+</a>
+<hr>
+{% endfor %}
+
+
+{% endblock %}

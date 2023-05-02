@@ -6,4 +6,5 @@ urlpatterns = [
     path("", views.index, name="index"),
     path('vehicles/', views.vehicles, name="vehicles"),
     path('vehicles/<int:vehicle_id>', views.vehicle, name='vehicle'),
+    path('orders/', views.OrderListView.as_view(), name = 'orders'),
 ]
