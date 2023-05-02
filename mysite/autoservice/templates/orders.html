@@ -6,6 +6,7 @@
 <h1>Uzsakymai:</h1>
 <br>
 {% for order in orders %}
+<a href="{{ order.pk }}">
     <p>{{ order }}</p>
 </a>
 <hr>
