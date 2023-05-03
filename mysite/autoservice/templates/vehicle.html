@@ -3,6 +3,15 @@
 {% block title %} Automobilis {% endblock %}
 
 {% block content %}
+{% load static %}
+{% if vehicle.photo %}
+<div>
+    <img src="{{ vehicle.photo.url }}" class="img-fluid" alt="..." width="700" height="700">
+    {% else %}
+    <img src="{% static 'img/no-image.png' %}" class="img-fluid " width="700" height="700">
+</div>
+{% endif %}
+<br>
 <h1>Automobilis:</h1>
 <br>
 

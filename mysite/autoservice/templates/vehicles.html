@@ -3,14 +3,26 @@
 {% block title %} Automobiliai {% endblock %}
 
 {% block content %}
+{% load static %}
 <h1>Automobiliai:</h1>
+
 <br>
-{% for vehicle in vehicles %}
-<a href="{% url 'vehicle' vehicle.id %}">
-    <p>{{ vehicle }}</p>
-</a>
-<hr>
-{% endfor %}
+ <div class="row">
+      {% for vehicle in vehicles %}
+        <div class="col-md-4 d-flex align-items-stretch">
+          <div class="card mb-4 shadow-sm">
+            {% if vehicle.photo %}
+              <img src="{{ vehicle.photo.url }}" class="img-fluid" alt="..." width="1000" height="1000">
+            {% else %}
+              <img src="{% static 'img/no-image.png' %}" class="img-fluid" alt="..." width="1000" height="1000">
+            {% endif %}
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2 text-muted">{{ vehicle.vehicle_model }}</h6>
+              <p class="card-text"><a href="{{ vehicle.id }}">{{ vehicle.plate }}</a></p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
 <div class="container puslapiai">
     <nav aria-label="...">
         {% if vehicles.has_other_pages %}
