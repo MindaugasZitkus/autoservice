@@ -50,6 +50,11 @@
                 {% else %}
                 <!--                <li class="nav-item"><a class="nav-link" href="">Prisijungti</a></li>-->
                 {% endif %}
+                <li>
+                    <form action="{% url 'search' %}" method="get" class="form-inline my-2 my-md-0">
+                        <input name="query" class="form-control" type="text" placeholder="Paieška">
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
