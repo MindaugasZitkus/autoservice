@@ -14,10 +14,13 @@ def search(request):
 
 # Create your views here.
 def index(request):
+    num_visits = request.session.get('num_visits', 1)
+    request.session['num_visits'] = num_visits + 1
     context = {
         "service_count": Service.objects.count(),
         "orders_done": Order.objects.filter(status__exact="i").count(),
         "vehicles": Vehicle.objects.count(),
+        'num_visits': num_visits,
 
     }
     return render(request, 'index.html', context=context)
