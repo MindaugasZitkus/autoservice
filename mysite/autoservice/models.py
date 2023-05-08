@@ -49,6 +49,7 @@ class Vehicle(models.Model):
 class Order(models.Model):
     date = models.DateTimeField(verbose_name="Data", auto_now_add=True)
     vehicle = models.ForeignKey(to="Vehicle", verbose_name="Automobilis", on_delete=models.SET, null=True)
+    deadline = models.DateTimeField(verbose_name="Terminas", null=True, blank=True)
 
     def total(self):
         total_sum = 0
