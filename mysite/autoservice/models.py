@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+import datetime
+import pytz
+utc=pytz.UTC
 
 # Create your models here.
 class VehicleModel(models.Model):
@@ -50,6 +52,9 @@ class Order(models.Model):
     client = models.ForeignKey(to=User, verbose_name="Klientas", on_delete=models.SET_NULL, null=True, blank=True)
     vehicle = models.ForeignKey(to="Vehicle", verbose_name="Automobilis", on_delete=models.SET, null=True)
     deadline = models.DateTimeField(verbose_name="Terminas", null=True, blank=True)
+
+    def deadline_overdue(self):
+        return self.deadline and datetime.datetime.today().replace(tzinfo=utc) > self.deadline.replace(tzinfo=utc)
 
     def total(self):
         total_sum = 0
