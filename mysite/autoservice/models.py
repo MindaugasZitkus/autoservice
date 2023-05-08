@@ -33,7 +33,6 @@ class Vehicle(models.Model):
     plate = models.CharField(verbose_name="Valstybinis numeris", max_length=6)
     vin = models.CharField(verbose_name="VIN kodas", max_length=17)
     owner_name = models.CharField(verbose_name="Savininkas", max_length=50)
-    owner = models.ForeignKey(to=User, verbose_name="Savininkas", on_delete=models.SET_NULL, null=True, blank=True)
     vehicle_model = models.ForeignKey(to="VehicleModel", verbose_name="Automobilio modelis", on_delete=models.SET_NULL,
                                       null=True)
     photo = models.ImageField(verbose_name='Nuotrauka', upload_to="vehicles", null=True, blank=True)
@@ -48,6 +47,7 @@ class Vehicle(models.Model):
 
 class Order(models.Model):
     date = models.DateTimeField(verbose_name="Data", auto_now_add=True)
+    client = models.ForeignKey(to=User, verbose_name="Klientas", on_delete=models.SET_NULL, null=True, blank=True)
     vehicle = models.ForeignKey(to="Vehicle", verbose_name="Automobilis", on_delete=models.SET, null=True)
     deadline = models.DateTimeField(verbose_name="Terminas", null=True, blank=True)
 
