@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -32,6 +33,7 @@ class Vehicle(models.Model):
     plate = models.CharField(verbose_name="Valstybinis numeris", max_length=6)
     vin = models.CharField(verbose_name="VIN kodas", max_length=17)
     owner_name = models.CharField(verbose_name="Savininkas", max_length=50)
+    owner = models.ForeignKey(to=User, verbose_name="Savininkas", on_delete=models.SET_NULL, null=True, blank=True)
     vehicle_model = models.ForeignKey(to="VehicleModel", verbose_name="Automobilio modelis", on_delete=models.SET_NULL,
                                       null=True)
     photo = models.ImageField(verbose_name='Nuotrauka', upload_to="vehicles", null=True, blank=True)
