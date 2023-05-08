@@ -19,8 +19,9 @@ class ServiceAdmin(admin.ModelAdmin):
     list_display = ['name','price']
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['vehicle','date']
+    list_display = ['vehicle','date','client','deadline']
     inlines = [OrderLineInLine]
+    list_editable = ['client', 'deadline']
 
 
 
