@@ -1,17 +1,15 @@
 {% extends "base.html" %}
 
-{% block "title" %} Uzsakymai {% endblock %}
+{% block "title" %}Uzsakymai{% endblock %}
 
 {% block "content" %}
 <h1>Uzsakymai:</h1>
 <br>
 {% for order in orders %}
-<a href="{{ order.pk }}">
-    <p>{{ order }}</p>
-</a>
+<p><a href="{% url 'order' order.pk %}">{{ order.vehicle }}</a> <span class="{% if order.deadline_overdue %}text-danger{% endif %}">({{ order.deadline }})</span></p>
 <hr>
 {% endfor %}
-<div class="pagination">
+  <div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
             <a href="?page=1">&laquo; pirmas</a>
