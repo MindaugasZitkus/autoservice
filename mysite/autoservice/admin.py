@@ -3,7 +3,8 @@ from .models import (VehicleModel,
                      Service,
                      Vehicle,
                      Order,
-                     Order_line)
+                     Order_line,
+                     OrderComment)
 
 class OrderLineInLine(admin.TabularInline):
     model = Order_line
@@ -18,9 +19,15 @@ class VehicleAdmin(admin.ModelAdmin):
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ['name','price']
 
+
+class OrderCommentInLine(admin.TabularInline):
+    model = OrderComment
+    extra = 0
+
+
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['vehicle','date','client','deadline', 'deadline_overdue']
-    inlines = [OrderLineInLine]
+    inlines = [ OrderLineInLine, OrderCommentInLine ]
     list_editable = ['client', 'deadline']
 
 

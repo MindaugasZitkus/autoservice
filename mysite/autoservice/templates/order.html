@@ -34,5 +34,26 @@
         <td><strong>{{ order.total }}</strong></td>
     </tr>
 </table>
-<!--{{ vehicle.id }}-->
+<h2>Atsiliepimai</h2>
+{% if user.is_authenticated %}
+<div class="fieldWrapper">
+    <hr>
+    <br/>
+    <h4>Palikite atsiliepimą:</h4>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.content }}</br>
+        <input type="submit" value="Paskelbti">
+    </form>
+</div>
+{% endif %}
+{% if order.comments.all %}
+{% for comment in order.comments.all %}
+<hr>
+<strong>{{ comment.user }}</strong>, <em>{{ comment.date_created}}</em>
+<p>{{ comment.content }}</p>
+{% endfor %}
+{% else %}
+<p>Komentarų nėra</p>
+{% endif %}
 {% endblock %}
