@@ -4,7 +4,8 @@ from .models import (VehicleModel,
                      Vehicle,
                      Order,
                      Order_line,
-                     OrderComment)
+                     OrderComment,
+                     Profile)
 
 class OrderLineInLine(admin.TabularInline):
     model = Order_line
@@ -39,3 +40,4 @@ admin.site.register(Service,ServiceAdmin)
 admin.site.register(Vehicle,VehicleAdmin )
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Order_line)
+admin.site.register(Profile)
