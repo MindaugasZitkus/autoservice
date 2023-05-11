@@ -81,6 +81,7 @@ class Order(models.Model):
     class Meta:  # Modeliu pavadinimai yra atvaizduojami teisingai vienaskaita ir daugiskaita (Autoservice skiltyje ir iejus i vidu)
         verbose_name = "Uzsakymas"
         verbose_name_plural = "Uzsakymai"
+        ordering = ['-id']
 
 
 class Order_line(models.Model):
