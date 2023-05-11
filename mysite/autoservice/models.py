@@ -78,10 +78,11 @@ class Order(models.Model):
 
     status = models.CharField(verbose_name="Busena", max_length=1, choices=LOAN_STATUS, blank=True, default='t')
 
-    class Meta:  # Modeliu pavadinimai yra atvaizduojami teisingai vienaskaita ir daugiskaita (Autoservice skiltyje ir iejus i vidu)
-        verbose_name = "Uzsakymas"
-        verbose_name_plural = "Uzsakymai"
-        ordering = ['-id']
+
+class Meta:  # Modeliu pavadinimai yra atvaizduojami teisingai vienaskaita ir daugiskaita (Autoservice skiltyje ir iejus i vidu)
+    verbose_name = "Uzsakymas"
+    verbose_name_plural = "Uzsakymai"
+    ordering = ['-id']
 
 
 class Order_line(models.Model):
